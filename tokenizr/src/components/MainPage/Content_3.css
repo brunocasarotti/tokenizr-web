@@ -1,0 +1,16 @@
+* {
+    text-align: justify;
+    color: black;
+}
+
+.title3 {
+    text-align: center;
+    padding: 1%;
+    font-weight: 700;
+}
+
+.content3 {
+    height: 100%;
+    padding: 1%;
+    font-weight: 400;
+}

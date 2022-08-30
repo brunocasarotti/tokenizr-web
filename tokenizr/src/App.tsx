@@ -1,14 +1,19 @@
-import React from 'react';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
-import Body from './components/body/Body';
+import './App.css'
+import { Routes, Route } from 'react-router-dom'
+import MainPage from "./pages/TokenizrMainPage"
+import SignUp from './pages/SignUp'
+import Login from './pages/Login'
+import About from './pages/About'
 
 function App() {
   return (
-    <div className="app">
-      <Header></Header>
-      <Body></Body>
-      <Footer></Footer>
+    <div className='app'>
+        <Routes>
+          <Route path="/" element={<Login></Login>}></Route>
+          <Route path="/tokenizr-main-page" element={<MainPage></MainPage>}></Route>
+          <Route path="/sign-up" element={<SignUp></SignUp>}></Route>
+          <Route path="/about" element={<About></About>}></Route>
+        </Routes>
     </div>
   );
 }
