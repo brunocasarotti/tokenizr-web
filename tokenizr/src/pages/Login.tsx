@@ -1,8 +1,8 @@
-import Log from '../components/Login/Login'
+import _Login from '../components/LoginAuth/Login'
 
 
 export default function Login() {
     return (
-        <Log></Log>
+        <_Login></_Login>
     )
 }

@@ -1,5 +1,8 @@
+import Sign_Up from '../components/LoginAuth/SignUp'
+
+
 export default function SignUp() {
     return (
-        <h1>SignUp</h1>
+        <Sign_Up></Sign_Up>
     )
 }

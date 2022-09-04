@@ -10,6 +10,7 @@ function App() {
     <div className='app'>
         <Routes>
           <Route path="/" element={<Login></Login>}></Route>
+          <Route path="/SignUp" element={<SignUp></SignUp>}></Route>
           <Route path="/tokenizr-main-page" element={<MainPage></MainPage>}></Route>
           <Route path="/sign-up" element={<SignUp></SignUp>}></Route>
           <Route path="/about" element={<About></About>}></Route>
