@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Link, useNavigate } from 'react-router-dom'
 import { parse, isDate } from "date-fns";
-import { useState } from 'react'
 import * as yup from 'yup'
 
 // Validador dos campos
@@ -18,7 +17,7 @@ const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().min(6, 'A senha deve ter no mínimo 6 caracteres').max(20, 'A senha deve ter no máximo 20 caracteres').required(),
     cpf: yup.number().typeError('Apenas números serão aceitos!').test('len', 'O CPF deve ter 11 números!', val => val?.toString().length == 11),
-    date: yup.date().max(new Date()).required("Campo obrigatório").transform(parseDateString),
+    date: yup.date().max(new Date()).min(1900).required("Campo obrigatório").transform(parseDateString),
     termos: yup.boolean().oneOf([true])
 })
 
@@ -82,7 +81,7 @@ export default function SingUpFisica() {
                         </div>
 
                         <div>
-                            <label htmlFor="" style={{ color: errors.date ? 'red' : 'black' }} className="text-sm-font-bold text-gray-600 block">Data de nascimento (MM/DD/YYYY)</label>
+                            <label htmlFor="" style={{ color: errors.date ? 'red' : 'black' }} className="text-sm-font-bold text-gray-600 block">Data de nascimento (DD/MM/YYYY)</label>
                             <input {...register('date')} type="text" style={{ color: errors.date ? 'red' : 'black' }} className="w-full p-2 border border-gray-300 rounded mt-1" />
                         </div>
                         {errors.date && "Campo inválido!"}

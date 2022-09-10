@@ -3,13 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { Link, useNavigate } from 'react-router-dom'
 
-
-
-
-
 // Validador dos campos
-
-
 
 const schema = yup.object().shape({
     email: yup.string().email().required(),
