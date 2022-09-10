@@ -39,7 +39,7 @@ export default function TokenizrMainPage() {
           </Row>
         </Container>
 
-      <Footer></Footer>
+        <Footer></Footer>
       </div>
     </>
   )
