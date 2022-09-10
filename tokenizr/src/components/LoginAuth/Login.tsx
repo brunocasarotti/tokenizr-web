@@ -1,35 +1,41 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useState } from "react"
 import * as yup from 'yup'
-import SignUp from './SignUp'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
 
 
 
 
 // Validador dos campos
 
+
+
 const schema = yup.object().shape({
     email: yup.string().email().required(),
-    password: yup.string().min(4, 'A senha deve ter no mínimo 6 caracteres').max(20, 'A senha deve ter no máximo 20 caracteres').required(),
+    password: yup.string().min(6, 'A senha deve ter no mínimo 6 caracteres').max(20, 'A senha deve ter no máximo 20 caracteres').required(),
 })
 
 interface FormData {
     email: string
     password: string
     remember?: boolean
-
 }
 export default function Login() {
+
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema),
         mode: "onChange"
     });
+    const navigate = useNavigate()
+
     // Verificador dos dados passados pelo usuário, garantindo que estejam no formato correto e que estejam alocados corretamente
-    const formSubmitHandler: SubmitHandler<FormData> = (data: FormData) => {
-        console.log(data) // Console Log para verificar se os dados estão sendo obtidos
+    const formSubmitHandler = (data: FormData) => {
+        if (!errors.email || errors.password) {
+            navigate('/tokenizr-main-page')
+        }
     }
+
     return (
         <div className="min-h-screen flex flex-col justify-center">
             <div className="max-w-md w-full mx-auto">
@@ -41,7 +47,7 @@ export default function Login() {
             <div className="max-w-md w-full mx-auto mt-4 bg-white p-8 border border-gray-300">
                 <form onSubmit={handleSubmit(formSubmitHandler)} action="" className="space-y-6">
                     <div>
-                        <label htmlFor="" style={{ color: errors.email ? "red" : 'black' }} className="text-sm-font-bold text-gray-600 block">Email</label>
+                        <label style={{ color: errors.email ? "red" : 'black' }} className="text-sm-font-bold text-gray-600 block">Email</label>
                         <input {...register('email')} style={{ color: errors.email ? 'red' : 'black' }} type="text" className="w-full p-2 border border-gray-300 rounded mt-1" />
                     </div>
                     {errors.email && "Campo inválido!"}
@@ -61,9 +67,7 @@ export default function Login() {
                         </div>
                     </div>
                     <div>
-                        <Link to='/tokenizr-main-page'>
-                            <button className="w-full text-center py-2 px-4 bg-gray-500 hover:bg-gray-700 rounded-md text-white text-sm">Logar</button>
-                        </Link>
+                        <button className="w-full text-center py-2 px-4 bg-gray-500 hover:bg-gray-700 rounded-md text-white text-sm">Logar</button>
                     </div>
                 </form>
                 <div>
